@@ -1,8 +1,7 @@
+import 'package:chat/bloc/auth_bloc.dart';
 import 'package:chat/constants/assets.dart';
 import 'package:chat/constants/constants.dart';
 import 'package:chat/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat/cubits/login_cubit/login_cubit.dart';
-import 'package:chat/cubits/login_cubit/login_state.dart';
 import 'package:chat/views/chat_view.dart';
 import 'package:chat/views/register_view.dart';
 import 'package:chat/widgets/custom_field.dart';
@@ -34,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: BlocConsumer<LoginCubit, LoginState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is LoginLoadingState) {
             isLoading = true;
@@ -43,8 +42,7 @@ class _LoginViewState extends State<LoginView> {
             showSnakeBar(context, state.errorMessage, isError: true);
           } else {
             isLoading = false;
-            BlocProvider.of<ChatCubit>(context)
-                .displayMessages();
+            BlocProvider.of<ChatCubit>(context).displayMessages();
             showSnakeBar(context, 'Login done successfully !', isError: false);
             Navigator.pushNamed(context, ChatView.id, arguments: email);
           }
@@ -98,8 +96,7 @@ class _LoginViewState extends State<LoginView> {
                       text: 'Login',
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
-                          await BlocProvider.of<LoginCubit>(context)
-                              .login(email: email!, password: password!);
+                          BlocProvider.of<AuthBloc>(context).add(LoginEvent(email: email!, password: password!));
                         }
                       },
                     ),

@@ -1,9 +1,6 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable, body_might_complete_normally_nullable
-
+import 'package:chat/bloc/auth_bloc.dart';
 import 'package:chat/constants/assets.dart';
 import 'package:chat/constants/constants.dart';
-import 'package:chat/cubits/register_cubit/register_cubit.dart';
-import 'package:chat/cubits/register_cubit/register_state.dart';
 import 'package:chat/widgets/custom_field.dart';
 import 'package:chat/widgets/custom_text.dart';
 import 'package:chat/widgets/my_button.dart';
@@ -34,7 +31,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // backgroundColor: MyColors.mainColor.withOpacity(0.5),
-      body: BlocConsumer<RegisterCubit, RegisterState>(
+      body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is RegisterLoadingState) {
             isLoading = true;
@@ -88,8 +85,8 @@ class _RegisterViewState extends State<RegisterView> {
                     text: 'Register',
                     onPressed: () async {
                       if (fromKey.currentState!.validate()) {
-                        BlocProvider.of<RegisterCubit>(context)
-                            .createUser(email: email!, password: password!);
+                        BlocProvider.of<AuthBloc>(context).add(
+                            RegisterEvent(email: email!, password: password!));
                       }
                     },
                   ),
