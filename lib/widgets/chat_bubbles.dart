@@ -2,7 +2,6 @@ import 'package:chat/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat/cubits/chat_cubit/chat_state.dart';
 import 'package:chat/models/message_model.dart';
 import 'package:chat/widgets/chat_bubble.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

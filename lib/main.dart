@@ -1,4 +1,5 @@
 import 'package:chat/bloc/auth_bloc.dart';
+import 'package:chat/bloc/bloc_observer.dart';
 import 'package:chat/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat/cubits/cubit/auth_cubit.dart';
 import 'package:chat/firebase_options.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthCubit(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => AuthBloc(),
         ),
         BlocProvider(

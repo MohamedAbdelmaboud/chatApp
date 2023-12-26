@@ -7,6 +7,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
+      // on event handler
       // Emitter<AuthState> emit
       if (event is LoginEvent) {
         try {
@@ -57,7 +58,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(RegisterFailureState(errorMessage: 'Something went Wrong'));
         }
       }
-
-    }); // on event handler
+    });
   }
+  // @override
+  // void onTransition(Transition<AuthEvent, AuthState> transition) {
+  //   // TODO: implement onTransition
+  //   super.onTransition(transition);
+  //   print('----------------------------------------------------------');
+  //   print(transition);
+  // }
 }

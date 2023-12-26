@@ -64,6 +64,7 @@ class _RegisterViewState extends State<RegisterView> {
                   CustomField(
                       validator: (value) {
                         if (value!.isEmpty) return 'Enter a valid Email';
+                        return null;
                       },
                       onChanged: (data) {
                         email = data;
@@ -73,6 +74,7 @@ class _RegisterViewState extends State<RegisterView> {
                   CustomField(
                     validator: (value) {
                       if (value!.isEmpty) return 'Enter a valid Password';
+                      return null;
                     },
                     onChanged: (data) {
                       password = data;

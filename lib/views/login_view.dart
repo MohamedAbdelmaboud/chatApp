@@ -44,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
             isLoading = false;
             BlocProvider.of<ChatCubit>(context).displayMessages();
             showSnakeBar(context, 'Login done successfully !', isError: false);
-            Navigator.pushNamed(context, ChatView.id, arguments: email);
+            Navigator.pushReplacementNamed(context, ChatView.id, arguments: email);
           }
         },
         builder: (context, state) {
